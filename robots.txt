@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /obrigado/
+Sitemap: https://engineeringguild.github.io/fabrica-de-agentes/sitemap.xml

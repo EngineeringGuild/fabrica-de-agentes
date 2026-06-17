@@ -29,13 +29,6 @@
     width: 100%;
     box-sizing: border-box;
   }
-  .fallback-link {
-    margin-top: 12px;
-    font-size: .82rem;
-    color: var(--muted, #6c757d);
-    text-align: center;
-  }
-  .fallback-link a { color: var(--muted, #6c757d); }
 </style>
 </head>
 <body>
@@ -45,33 +38,19 @@
   <h1>Agente 01 — Atendente FAQ, grátis</h1>
   <p class="lead">Cliente pergunta às 22h, você responde às 10h do dia seguinte — e ele já comprou do concorrente. Este agente responde em segundos, 24/7, no seu tom, e escala para você quando o assunto é fechamento ou reclamação.</p>
 
-  <!--
-  TODO (ENG-142 — BREVO FORM EMBED):
-  1. Crie conta free em brevo.com (caioascastilho@gmail.com)
-  2. Crie lista "fabrica-leads"
-  3. Crie formulário Nome + Email com automação:
-     - Email E1: entrega o PDF ../downloads/Agente-01-Atendente-FAQ-GRATIS.pdf
-     - Sequência E2..E5: ver marketing/email-sequence-brevo.md
-     - E3 e E5: inserir CTA com link Hotmart após ENG-140 estar vivo
-  4. Copie o snippet de embed (HTML/JS) do Brevo e substitua o bloco
-     <form class="form-row">...</form> abaixo pelo snippet.
-  5. Remova o bloco .fallback-link após confirmar que o form funciona.
-  -->
-
   <div class="form-box">
     <h3>Receba o Agente 01 por email — grátis</h3>
     <p class="sub">PDF completo + guia de implantação direto na sua caixa.</p>
-
-    <!-- SUBSTITUIR pelo snippet embed do Brevo (ENG-142 passo 4) -->
-    <form class="form-row" action="#" onsubmit="return false;">
+    <div id="brevo-success" style="display:none;background:#d4edda;color:#155724;padding:12px 16px;border-radius:6px;text-align:center;font-weight:600;">
+      Agente enviado! Confira seu email — o PDF está a caminho.
+    </div>
+    <form id="brevo-form" class="form-row" method="POST" action="https://10ed6f30.sibforms.com/serve/MUIFAGNV3KEoc8YrXhmy7UtdGtmo2z9wXeo3Uxw32Qnl6L9L9uelLmC8x9FG5OFK4wNYgG_LtkA1DSF2Wqw5Zlcz1qOTUM3P2dv4U0SXMljbL136XDozLGQ-1Z4uVXU0tx9TKgFUq76gUs9B2QqOM9pBHFZREkbVoS1wHqNmUzf0gALK0Hk1SXGY3TAyLt8dIWfYoJrHa8A5_LdG2w==">
       <input type="text" name="FIRSTNAME" placeholder="Seu nome" required>
       <input type="email" name="EMAIL" placeholder="Seu melhor email" required>
+      <input type="text" name="email_address_check" value="" style="position:absolute;left:-5000px;" aria-hidden="true" tabindex="-1">
+      <input type="hidden" name="locale" value="pt">
       <button type="submit" class="btn btn-primary" style="width:100%">Quero receber o agente grátis →</button>
     </form>
-    <!-- FIM placeholder Brevo -->
-
-    <!-- REMOVER quando form Brevo estiver ativo -->
-    <p class="fallback-link">Prefere baixar sem cadastro? <a href="../downloads/Agente-01-Atendente-FAQ-GRATIS.pdf" download>Clique aqui</a></p>
   </div>
 
   <h2>O que vem dentro</h2>
@@ -87,6 +66,30 @@
   <p>O pack completo cobre vendas (prospecção, propostas, follow-up), presença (conteúdo, LinkedIn), números (relatório semanal, financeiro) e a base antiga (reativação) — mais o ebook de 59 páginas que monta tudo numa rotina de ~2h30 por semana.</p>
   <p><a class="btn btn-primary" href="../#oferta">Ver o pack completo — R$ 47 no lançamento</a></p>
 </div>
+
+<script>
+(function(){
+  var f=document.getElementById('brevo-form');
+  if(!f)return;
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var btn=f.querySelector('[type="submit"]');
+    btn.disabled=true;
+    btn.textContent='Enviando…';
+    var data=new FormData(f);
+    data.append('html_type','simple');
+    fetch(f.action,{method:'POST',body:data,mode:'no-cors'})
+      .then(function(){
+        f.style.display='none';
+        document.getElementById('brevo-success').style.display='block';
+      })
+      .catch(function(){
+        btn.disabled=false;
+        btn.textContent='Quero receber o agente grátis →';
+      });
+  });
+})();
+</script>
 
 <footer>
   <div class="wrap"><p>© Engineering Guild · <a href="../">fabricadeagentes</a></p></div>

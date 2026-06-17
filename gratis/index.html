@@ -10,6 +10,33 @@
 <meta property="og:description" content="Prompt completo + implantação passo a passo em 15 minutos. Amostra real do Pack Fábrica de Agentes.">
 <meta property="og:locale" content="pt_BR">
 <link rel="stylesheet" href="../style.css">
+<style>
+  .form-box {
+    background: var(--surface, #f8f9fa);
+    border: 1px solid var(--border, #dee2e6);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 24px 0;
+  }
+  .form-box h3 { margin: 0 0 8px; font-size: 1.1rem; }
+  .form-box .sub { margin: 0 0 16px; font-size: .9rem; color: var(--muted, #6c757d); }
+  .form-row { display: flex; flex-direction: column; gap: 10px; }
+  .form-row input {
+    padding: 10px 14px;
+    border: 1px solid var(--border, #dee2e6);
+    border-radius: 6px;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .fallback-link {
+    margin-top: 12px;
+    font-size: .82rem;
+    color: var(--muted, #6c757d);
+    text-align: center;
+  }
+  .fallback-link a { color: var(--muted, #6c757d); }
+</style>
 </head>
 <body>
 
@@ -18,10 +45,33 @@
   <h1>Agente 01 — Atendente FAQ, grátis</h1>
   <p class="lead">Cliente pergunta às 22h, você responde às 10h do dia seguinte — e ele já comprou do concorrente. Este agente responde em segundos, 24/7, no seu tom, e escala para você quando o assunto é fechamento ou reclamação.</p>
 
-  <div class="dl-box">
-    <p style="margin:0 0 14px"><strong>PDF com o prompt completo + implantação passo a passo (15 min)</strong></p>
-    <a class="btn btn-primary" href="../downloads/Agente-01-Atendente-FAQ-GRATIS.pdf" download>Baixar o Agente 01 (PDF grátis)</a>
-    <p style="margin:14px 0 0; font-size:.85rem; color:var(--muted)">Sem cadastro. É a amostra real do pack — mesmo formato, mesma qualidade.</p>
+  <!--
+  TODO (ENG-142 — BREVO FORM EMBED):
+  1. Crie conta free em brevo.com (caioascastilho@gmail.com)
+  2. Crie lista "fabrica-leads"
+  3. Crie formulário Nome + Email com automação:
+     - Email E1: entrega o PDF ../downloads/Agente-01-Atendente-FAQ-GRATIS.pdf
+     - Sequência E2..E5: ver marketing/email-sequence-brevo.md
+     - E3 e E5: inserir CTA com link Hotmart após ENG-140 estar vivo
+  4. Copie o snippet de embed (HTML/JS) do Brevo e substitua o bloco
+     <form class="form-row">...</form> abaixo pelo snippet.
+  5. Remova o bloco .fallback-link após confirmar que o form funciona.
+  -->
+
+  <div class="form-box">
+    <h3>Receba o Agente 01 por email — grátis</h3>
+    <p class="sub">PDF completo + guia de implantação direto na sua caixa.</p>
+
+    <!-- SUBSTITUIR pelo snippet embed do Brevo (ENG-142 passo 4) -->
+    <form class="form-row" action="#" onsubmit="return false;">
+      <input type="text" name="FIRSTNAME" placeholder="Seu nome" required>
+      <input type="email" name="EMAIL" placeholder="Seu melhor email" required>
+      <button type="submit" class="btn btn-primary" style="width:100%">Quero receber o agente grátis →</button>
+    </form>
+    <!-- FIM placeholder Brevo -->
+
+    <!-- REMOVER quando form Brevo estiver ativo -->
+    <p class="fallback-link">Prefere baixar sem cadastro? <a href="../downloads/Agente-01-Atendente-FAQ-GRATIS.pdf" download>Clique aqui</a></p>
   </div>
 
   <h2>O que vem dentro</h2>

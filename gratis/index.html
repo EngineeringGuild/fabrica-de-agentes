@@ -5,11 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Agente 01 grátis — Atendente FAQ para WhatsApp/Instagram | Fábrica de Agentes</title>
 <meta name="description" content="Baixe grátis o Agente 01 do Pack Fábrica de Agentes: o Atendente FAQ que responde seus clientes em segundos, 24/7, no seu tom. Prompt completo + guia de implantação.">
-<link rel="canonical" href="https://engineeringguild.github.io/fabrica-de-agentes/gratis/">
+<link rel="canonical" href="https://fabricadeagentes.caiocastilho.com/gratis/">
 <meta property="og:title" content="Agente de IA grátis: Atendente FAQ para WhatsApp/Instagram">
 <meta property="og:description" content="Prompt completo + implantação passo a passo em 15 minutos. Amostra real do Pack Fábrica de Agentes.">
 <meta property="og:locale" content="pt_BR">
 <link rel="stylesheet" href="../style.css">
+<script src="../pixel.js" defer></script>
 <style>
   .form-box {
     background: var(--surface, #f8f9fa);
@@ -82,6 +83,7 @@
       .then(function(){
         f.style.display='none';
         document.getElementById('brevo-success').style.display='block';
+        window.fdaTrack&&fdaTrack('Lead');
       })
       .catch(function(){
         btn.disabled=false;

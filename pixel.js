@@ -5,7 +5,7 @@
  * Depois de preenchido: PageView automático em toda página;
  * eventos Lead/InitiateCheckout/Purchase disparados pelas páginas.
  */
-window.FB_PIXEL_ID = window.FB_PIXEL_ID || ""; /* <-- PREENCHER no D1 (ex.: "1234567890") */
+window.FB_PIXEL_ID = window.FB_PIXEL_ID || "1012110551536514";
 
 (function () {
   if (!window.FB_PIXEL_ID) return; /* gate: sem ID, sem pixel, sem erro */

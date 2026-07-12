@@ -10,9 +10,9 @@ Landing page do **Pack Fábrica de Agentes** (IDEA-006.F1 / Engineering Guild), 
 | Caminho | Página |
 |---|---|
 | `/` | LP da oferta (R$ 47 lançamento) |
-| `/gratis/` | Lead magnet — Agente 01 (PDF, download direto) |
+| `/gratis/` | Lead magnet — Agentes 01, 02 e 04 (captura por Brevo, PDFs por email — ver nota HITL no HTML) |
 | `/obrigado/` | Pós-compra (configurar como página de obrigado na Hotmart) |
-| `/downloads/` | Arquivos públicos (lead magnet) |
+| `/downloads/` | Arquivos públicos (lead magnet) — 3 PDFs (Agentes 01/02/04) |
 
 ## Deploy
 

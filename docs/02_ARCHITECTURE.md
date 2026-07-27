@@ -89,11 +89,17 @@ canonical metadata.
    §Lead capture. The HTML comment directly below it (line 61) already self-flags the real HITL gap —
    the Brevo automation only attaches the Agente 01 PDF, not all 3 — matching the cross-reference to
    `project-money/docs/qa/AGENTS_QA_REPORT.md` this doc already makes.
-6. **TLS/HTTPS enforcement — NOT independently re-verified this pass.** This environment has no
-   authenticated `gh api`/GitHub Pages settings access, so the `*.github.io`-certificate finding from
-   PR #8 (2026-07-16) could not be re-confirmed live. Carried forward as-documented (still open,
-   awaiting Caio's merge) rather than asserted as freshly checked — the honest E1 discipline is to say
-   what wasn't verified, not just what was.
+6. **TLS/HTTPS enforcement — ✅ now verified live (2026-07-27, MSN-020).** The earlier pass correctly
+   refused to assert this: it had no authenticated `gh api`/Pages access, so it carried the
+   `*.github.io`-certificate finding forward as-documented instead of claiming a fresh check. That
+   discipline was right, and it is now closed with evidence — `openssl` returns
+   `subject=CN=fabricadeagentes.caiocastilho.com` (Let's Encrypt, through 2026-10-23) and the Pages
+   API reports `https_certificate.state=approved`, `https_enforced=true`. Fixed 2026-07-25 23:56 on
+   `main`; PR #8 was closed, not merged. See `06_OPERATIONS.md` §Custom domain.
+
+   Worth keeping as a worked example: **"not verified" aged well, "still broken" did not.** The
+   sibling claim in `06_OPERATIONS.md` asserted the gap as current fact and was merged ~50 minutes
+   after it had already been fixed, then stood as the authoritative status for two days.
 
 **Constraints:** R$0 posture (DEC-001-034); marketing copy/pricing/checkout mechanics are out of
 scope for this pass (documentation/infra only, per the ARCH-PASS mission's HITL-sensitivity rule for

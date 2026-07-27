@@ -19,14 +19,14 @@ to this repo's build.
 - Meta Pixel wired and gated, ID filled in and confirmed firing (MSN-017, 2026-07-16).
 - `robots.txt`/`sitemap.xml` corrected to the custom domain (were still pointing at the old
   `engineeringguild.github.io/fabrica-de-agentes/` URL — fixed 2026-07-18).
+- **Custom-domain TLS/HTTPS enforcement — ✅ done 2026-07-25 23:56**, verified live 2026-07-27
+  (MSN-020): Let's Encrypt cert for `CN=fabricadeagentes.caiocastilho.com`, valid through
+  **2026-10-23**; Pages API reports `state=approved` and `https_enforced=true`; `curl` without `-k`
+  returns 200 across the funnel. Fixed by `Delete CNAME` → `Create CNAME` on `main` via the web UI;
+  **PR `#8` was closed, not merged**. Detail and the lesson learned: `06_OPERATIONS.md` §Custom domain.
 
 ## Open — this repo
 
-- **Custom-domain TLS/HTTPS enforcement** — never provisioned; the site currently serves a
-  `*.github.io` certificate for the custom domain, which shows a browser security warning to every
-  visitor. This is a GitHub Pages repo-settings change (Enforce HTTPS checkbox, after DNS
-  propagation), not a file in this repo — staged as PR `#8` (+ a revert to follow) per MSN-017. Merge
-  is Caio's, not an agent's, in this harness.
 - **LP conversion audit** (headline/demo/social-proof improvements) — left as an open PR by design
   (`#5`, MSN-016) since the LP is the offer's face and shouldn't be self-merged.
 

@@ -1,6 +1,7 @@
-# Artes geradas localmente pelo automation/render_carousel.py.
-# NÃO commitar: este repo é servido pelo GitHub Pages — qualquer coisa commitada
-# aqui vira URL pública. Os slides são regeneráveis em segundos rodando o script.
+# Rascunhos locais do render_carousel.py (--out tmp/carrossel).
+# As artes DE PUBLICAÇÃO vivem em media/carrossel/ e SÃO commitadas de propósito:
+# a Graph API do Instagram só aceita `image_url` publicamente acessível, então o
+# Pages é o nosso host de mídia. São material de marketing, feitos para ser públicos.
 tmp/carrossel/
 
 # Gravações de demo (roteiro em project-money/docs/factories/f-video/scripts/

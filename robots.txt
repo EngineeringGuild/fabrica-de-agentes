@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /obrigado/
+Disallow: /media/carrossel/
 Sitemap: https://fabricadeagentes.caiocastilho.com/sitemap.xml

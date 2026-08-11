@@ -1,0 +1,81 @@
+name: Publicar carrossel no Instagram
+
+# Duas formas de disparar:
+#
+#   1. MANUAL (workflow_dispatch) — aparece como botão "Run workflow" no app do
+#      GitHub no celular. É o caminho para publicar de qualquer lugar sem PC.
+#   2. CRON diário às 14:30 UTC (11:30 BRT — a janela de almoço definida em
+#      project-money/docs/marketing/PUBLISHING_SCHEDULE.md). Publica o post cuja
+#      `date` no schedule.json for a de hoje, e só se `approved: true`.
+#
+# O gate humano NÃO está aqui: está no campo `approved` do automation/schedule.json,
+# que só vira true por PR mergeada pelo Caio. Este workflow não pode publicar nada
+# que ele não tenha aprovado — nem manualmente.
+
+on:
+  workflow_dispatch:
+    inputs:
+      post:
+        description: "Número do post (1-7). Vazio = o agendado para hoje."
+        required: false
+        type: string
+      dry_run:
+        description: "Só validar, não publicar"
+        required: false
+        type: boolean
+        default: false
+  schedule:
+    - cron: "30 14 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ig-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Mostrar agenda
+        run: python automation/publish_carousel.py --list
+
+      - name: Publicar
+        id: pub
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+        run: |
+          set -euo pipefail
+          ARGS=""
+          if [ -n "${{ inputs.post }}" ]; then
+            ARGS="--post ${{ inputs.post }}"
+          else
+            ARGS="--due"
+          fi
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            ARGS="$ARGS --dry-run"
+          fi
+          echo "rodando: publish_carousel.py $ARGS"
+          python automation/publish_carousel.py $ARGS
+
+      - name: Registrar publicação no repo
+        if: success() && inputs.dry_run != true
+        run: |
+          set -euo pipefail
+          if git diff --quiet automation/schedule.json; then
+            echo "schedule.json inalterado (nada publicado) — sem commit."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add automation/schedule.json
+          git commit -m "chore(ig): registra publicação [skip ci]"
+          git push

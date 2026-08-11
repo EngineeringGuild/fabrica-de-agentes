@@ -1,0 +1,13 @@
+# Artes geradas localmente pelo automation/render_carousel.py.
+# NÃO commitar: este repo é servido pelo GitHub Pages — qualquer coisa commitada
+# aqui vira URL pública. Os slides são regeneráveis em segundos rodando o script.
+tmp/carrossel/
+
+# Gravações de demo (roteiro em project-money/docs/factories/f-video/scripts/
+# demo-capture-founder-proof.md). Mesma razão: peso + exposição pública.
+tmp/*.mp4
+tmp/*.mov
+tmp/*.webm
+
+__pycache__/
+*.pyc

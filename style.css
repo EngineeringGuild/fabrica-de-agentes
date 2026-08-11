@@ -92,6 +92,17 @@ section.soft { background: var(--bg-soft); }
 .price-box .cents { font-size: 1.2rem; }
 .price-box .tag { color: var(--accent); font-weight: 600; font-size: .9rem; margin-bottom: 14px; }
 .guarantee { font-size: .85rem; color: #8b97a8; margin-top: 12px; max-width: 240px; }
+.value-stack { font-size: .85rem; color: var(--accent); margin: 0 0 4px; max-width: 240px; }
+
+/* Demo antes/depois */
+.demo-split { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 20px; }
+.demo-before, .demo-after { border-radius: var(--radius); padding: 22px; }
+.demo-before { background: var(--bg-soft); border: 1px dashed #c7d0dc; }
+.demo-after { background: var(--ink); color: #e8edf4; }
+.demo-after p { color: #dbe2ec; }
+.demo-label { font-weight: 800; letter-spacing: .08em; font-size: .8rem; margin-bottom: 8px; }
+.demo-before .demo-label { color: var(--accent-dark); }
+.demo-after .demo-label { color: var(--accent); }
 
 /* FAQ */
 details {

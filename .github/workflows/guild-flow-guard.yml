@@ -14,9 +14,21 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      # Private cross-repo action resolution currently fails for a raw commit SHA
-      # in this repository (`Unable to resolve action ... not found`). The org's
-      # existing working pattern is @main. Keep this explicit supply-chain debt and
-      # move back to a reviewed immutable ref once private-action SHA resolution is
-      # verified for the real GitHub App/Actions identities.
-      - uses: EngineeringGuild/Engineering-Guild/.github/actions/guild-flow-guard@main
+
+      # Temporary local distribution of the reviewed Guild guard because this
+      # repository's Actions identity cannot currently resolve the private hub
+      # action (raw SHA or @main). Provenance is recorded in the vendored script;
+      # Engineering-Guild#70 tracks restoration of central immutable distribution.
+      - name: Docs lint (changed files vs base)
+        env:
+          PR_BASE_REF: ${{ github.base_ref }}
+        run: |
+          git fetch --no-tags --depth=200 origin "$PR_BASE_REF" || true
+          python3 tools/guild-flow-guard/docs_lint.py lint --base "$PR_BASE_REF"
+
+      - name: PR metadata
+        env:
+          PR_HEAD_REF: ${{ github.head_ref }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: python3 tools/guild-flow-guard/docs_lint.py pr-meta

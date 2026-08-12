@@ -1,0 +1,10 @@
+# Texto alternativo — colar no campo de cada slide ao agendar.
+# A busca do Instagram indexa alt text. Se o app cortar, mantenha a 1a frase.
+
+slide 01: VOCÊ NÃO PERDEU A VENDA PELO PREÇO. Perdeu pela demora.
+slide 02: O cliente manda “quanto custa?” às 21h. Você responde às 9h do dia seguinte.
+slide 03: Nesse intervalo ele mandou a mesma pergunta pra mais dois. Quem respondeu primeiro levou.
+slide 04: Você não precisa responder mais rápido. Precisa que ALGO responda por você enquanto você vive.
+slide 05: Um atendente que sabe seu preço, seu prazo, sua política — e que nunca inventa quando não sabe: ele te passa a bola.
+slide 06: Leva 20 minutos pra montar. Trabalha 24h. Custa R$0/mês.
+slide 07: Comenta AGENTE que eu te mando 3 agentes prontos, de graça.

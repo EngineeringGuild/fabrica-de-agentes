@@ -1,0 +1,8 @@
+# Texto alternativo — colar no campo de cada slide ao agendar.
+# A busca do Instagram indexa alt text. Se o app cortar, mantenha a 1a frase.
+
+slide 01: A IA TE RESPONDE BONITO E INÚTIL? Falta uma linha.
+slide 02: “Antes de responder, me faça as 3 perguntas que faltam pra você acertar.”
+slide 03: Cola isso no fim de qualquer coisa que você pedir.
+slide 04: Ela para de chutar e começa a perguntar. É o que um funcionário bom faz no primeiro dia.
+slide 05: Funciona porque o problema quase nunca é a ferramenta. É que ela recebeu metade do contexto e não tinha permissão de pedir o resto.

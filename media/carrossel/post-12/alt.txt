@@ -1,0 +1,13 @@
+# Texto alternativo — colar no campo de cada slide ao agendar.
+# A busca do Instagram indexa alt text. Se o app cortar, mantenha a 1a frase.
+
+slide 01: O CARDÁPIO 8 coisas que a IA já faz no seu negócio hoje. Sem plano pago.
+slide 02: 1. RESPONDER A PERGUNTA REPETIDA As 10 que mais caem no seu WhatsApp — no seu tom, não no dela.
+slide 03: 2. LEMBRAR DO ORÇAMENTO PARADO Você cola a lista. Ela escreve a cobrança educada de cada um.
+slide 04: 3. TRADUZIR GROSSERIA EM EDUCAÇÃO Você escreve o que sentiu. Ela devolve o que dá pra mandar.
+slide 05: 4. VIRAR ÁUDIO EM TEXTO O áudio de 4 minutos do cliente vira 3 linhas e uma lista do que ele pediu.
+slide 06: 5. FECHAR A SEMANA Você joga as anotações soltas. Ela devolve o que entrou, o que saiu e o que ficou pendente.
+slide 07: 6. ESCREVER A DESCRIÇÃO DO SERVIÇO A mesma que você nunca senta pra escrever e por isso ainda não está no site.
+slide 08: 7. FAZER A PERGUNTA QUE VOCÊ ESQUECEU Antes do orçamento: o que falta perguntar pro cliente pra não voltar atrás depois.
+slide 09: 8. REVISAR ANTES DE VOCÊ MANDAR Cola o texto e pergunta: “o que aqui pode ser mal interpretado?”
+slide 10: Nenhuma precisa de plano pago. Todas precisam que você diga o que quer com uma frase a mais.

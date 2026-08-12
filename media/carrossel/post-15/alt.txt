@@ -1,0 +1,9 @@
+# Texto alternativo — colar no campo de cada slide ao agendar.
+# A busca do Instagram indexa alt text. Se o app cortar, mantenha a 1a frase.
+
+slide 01: NÃO COLA ISSO NO CHATGPT. 3 coisas que eu não jogo lá dentro.
+slide 02: 1. DADO DE CLIENTE COM NOME CPF, endereço, telefone, número de contrato. Se vazar, o problema é seu — não da ferramenta.
+slide 03: 2. CONTRATO INTEIRO DE TERCEIRO Você pode não ter o direito de colar aquilo em lugar nenhum. Confidencialidade não some porque é IA.
+slide 04: 3. SENHA. QUALQUER UMA. Parece óbvio. Eu já vi.
+slide 05: O jeito certo é trocar o dado real por marcador: [NOME], [VALOR], [PRAZO]. A resposta sai igual e o dado não sai de casa.
+slide 06: E confere na ferramenta que você usa: em várias, no plano gratuito, a conversa pode ser usada pra treinar o modelo. Costuma dar pra desligar nas configurações.

@@ -1,0 +1,14 @@
+Prompt ruim de ChatGPT: esse aqui está errado e eu escrevi de propósito.
+
+"Escreve uma resposta pro cliente que perguntou o preço."
+
+Voltou um texto simpático, sem preço, sem prazo e sem tom nenhum. E a culpa não é da ferramenta.
+
+Faltou dizer qual preço, qual cliente, que tom usar e o que fazer se ele pedir desconto. Quatro coisas que eu sei de cabeça e simplesmente não escrevi.
+
+O que mais faltou aí?
+
+#chatgpt #prompt #IAparaNegócios #pequenosnegócios
+
+---
+Agendado: 2026-08-21 11:30 BRT  |  Me corrige: o prompt ruim de propósito

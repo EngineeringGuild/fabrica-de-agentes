@@ -1,0 +1,12 @@
+O que não colar no ChatGPT: dado de cliente com nome, contrato de terceiro e senha.
+
+Não é paranoia — é que o dado sai do seu controle no segundo em que você aperta enviar, e a responsabilidade sobre ele continua sendo sua.
+
+O jeito certo é trocar o dado real por marcador: [NOME], [VALOR], [PRAZO]. A resposta sai exatamente igual e o dado não sai de casa.
+
+Esse é pra quem já colou um orçamento inteiro, com nome do cliente, pra "só melhorar a redação".
+
+#lgpd #chatgpt #pequenosnegócios #IAparaNegócios
+
+---
+Agendado: 2026-08-26 11:30 BRT  |  O aviso: o que não colar na IA (RESERVA)

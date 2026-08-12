@@ -1,0 +1,6 @@
+# Texto alternativo — colar no campo de cada slide ao agendar.
+# A busca do Instagram indexa alt text. Se o app cortar, mantenha a 1a frase.
+
+slide 01: POV: O CLIENTE MANDOU “OI” ÀS 22H47. Você já sabe que era orçamento.
+slide 02: VOCÊ RESPONDEU 9H12. Ele fechou com outro às 23h05.
+slide 03: Ninguém perde venda por preço às 23h. Perde porque estava dormindo — que é o que gente faz.

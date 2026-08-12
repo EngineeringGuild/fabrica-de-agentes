@@ -1,0 +1,70 @@
+name: Fábrica CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+# Validation is intentionally read-only. Publishing remains isolated in the
+# dedicated publish workflow and is not part of this CI path.
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Static + automation validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compile Python automation
+        run: python -m compileall -q automation
+
+      - name: Parse tracked JSON
+        run: |
+          python - <<'PY'
+          import json
+          import subprocess
+          from pathlib import Path
+
+          tracked = subprocess.check_output(
+              ['git', 'ls-files', '*.json'], text=True
+          ).splitlines()
+          for raw in tracked:
+              path = Path(raw)
+              with path.open('r', encoding='utf-8') as handle:
+                  json.load(handle)
+              print(f'OK {path}')
+          print(f'Validated {len(tracked)} tracked JSON file(s).')
+          PY
+
+      - name: Verify minimum static-site contract
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          required = [
+              Path('index.html'),
+              Path('gratis/index.html'),
+              Path('obrigado/index.html'),
+              Path('robots.txt'),
+              Path('sitemap.xml'),
+              Path('CNAME'),
+          ]
+          missing = [str(path) for path in required if not path.is_file()]
+          if missing:
+              raise SystemExit('Missing required site artifact(s): ' + ', '.join(missing))
+          for path in required:
+              if path.stat().st_size == 0:
+                  raise SystemExit(f'Empty required site artifact: {path}')
+              print(f'OK {path}')
+          PY
+
+      - name: Diff hygiene
+        run: git diff --check

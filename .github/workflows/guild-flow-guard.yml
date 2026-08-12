@@ -1,0 +1,34 @@
+name: guild-flow-guard
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Temporary local distribution of the reviewed Guild guard because this
+      # repository's Actions identity cannot currently resolve the private hub
+      # action (raw SHA or @main). Provenance is recorded in the vendored script;
+      # Engineering-Guild#70 tracks restoration of central immutable distribution.
+      - name: Docs lint (changed files vs base)
+        env:
+          PR_BASE_REF: ${{ github.base_ref }}
+        run: |
+          git fetch --no-tags --depth=200 origin "$PR_BASE_REF" || true
+          python3 tools/guild-flow-guard/docs_lint.py lint --base "$PR_BASE_REF"
+
+      - name: PR metadata
+        env:
+          PR_HEAD_REF: ${{ github.head_ref }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: python3 tools/guild-flow-guard/docs_lint.py pr-meta

@@ -1,76 +1,83 @@
 {
-  "_doc": "Agenda de publicação do @fabricadeagentesai. O campo approved é o GATE HUMANO: nada com approved=false publica, nem por cron nem por disparo manual. Fonte do conteúdo: project-money/docs/factories/f-video/scripts/batch-fabricadeagentes-02-carrossel.md",
+  "_doc": "AGENDA HISTORICA — NAO USAR PARA PUBLICAR. Os 7 posts foram agendados em 2026-08-11 direto no Meta Business Suite (Planner), porque developers.facebook.com nega acesso a conta Business e o token nunca pode ser gerado. Todos entram com approved=false e scheduled_elsewhere=true para que o cron do publish-carousel.yml NUNCA republique — post duplicado no IG e dano real. Se um dia o token existir, revisar item a item antes de mexer neste campo.",
   "media_base_url": "https://fabricadeagentes.caiocastilho.com",
   "posts": [
     {
       "id": 1,
-      "date": "2026-08-11",
+      "date": "2026-08-12",
       "title": "3 horas -> 4 minutos (demo)",
       "media_dir": "media/carrossel/post-1",
       "approved": false,
       "published_at": null,
       "permalink": null,
-      "caption": "Eu levava 3 horas nisso. Agora levo 4 minutos — e a diferença não foi trocar de ferramenta.\n\nA maioria das pessoas pede \"escreve um post pra mim\" e recebe texto genérico com emoji de foguete. O problema não é a IA. É usá-la sem manual.\n\nAgente é a mesma IA contratada direito: quem ela é, o que sabe do seu negócio, o que nunca pode fazer, e o formato que tem que devolver. Escrevi 10 desses pra minha própria operação.\n\nComenta AGENTE que eu te mando 3 agentes prontos, de graça (sem programar nada).\n\n#agentesdeIA #automação #IAparaNegócios #produtividade"
+      "caption": "Eu levava 3 horas nisso. Agora levo 4 minutos — e a diferença não foi trocar de ferramenta.\n\nA maioria das pessoas pede \"escreve um post pra mim\" e recebe texto genérico com emoji de foguete. O problema não é a IA. É usá-la sem manual.\n\nAgente é a mesma IA contratada direito: quem ela é, o que sabe do seu negócio, o que nunca pode fazer, e o formato que tem que devolver. Escrevi 10 desses pra minha própria operação.\n\nComenta AGENTE que eu te mando 3 agentes prontos, de graça (sem programar nada).\n\n#agentesdeIA #automação #IAparaNegócios #produtividade",
+      "scheduled_elsewhere": "meta-business-suite 11:30 BRT"
     },
     {
       "id": 2,
-      "date": "2026-08-12",
+      "date": "2026-08-13",
       "title": "3 agentes que você monta hoje (listicle)",
       "media_dir": "media/carrossel/post-2",
       "approved": false,
       "published_at": null,
       "permalink": null,
-      "caption": "3 agentes prontos que você monta hoje, sem programar nada.\n\nAtendente, follow-up de orçamento e gerador de conteúdo. Os três rodam nas contas gratuitas que você já tem — o que muda é o manual que você cola dentro.\n\nEsses 3 são os que eu libero de graça, completos. Não é amostra cortada.\n\nComenta AGENTE que eu te mando os 3.\n\n#agentesdeIA #automação #pequenosnegócios #IAparaNegócios"
+      "caption": "3 agentes prontos que você monta hoje, sem programar nada.\n\nAtendente, follow-up de orçamento e gerador de conteúdo. Os três rodam nas contas gratuitas que você já tem — o que muda é o manual que você cola dentro.\n\nEsses 3 são os que eu libero de graça, completos. Não é amostra cortada.\n\nComenta AGENTE que eu te mando os 3.\n\n#agentesdeIA #automação #pequenosnegócios #IAparaNegócios",
+      "scheduled_elsewhere": "meta-business-suite 11:30 BRT"
     },
     {
       "id": 3,
-      "date": "2026-08-13",
+      "date": "2026-08-14",
       "title": "Perdeu a venda pela demora (dor)",
       "media_dir": "media/carrossel/post-3",
       "approved": false,
       "published_at": null,
       "permalink": null,
-      "caption": "Todo pequeno negócio perde venda por demora no WhatsApp — e quase nunca percebe, porque o cliente não avisa que desistiu.\n\nO que resolve não é acordar mais cedo. É ter um atendente que responde no seu tom, sabe seu preço e seu prazo, e que escala pra você quando é venda ou problema. Sem inventar resposta — essa é a regra que faz ele ser confiável.\n\nComenta AGENTE que eu te mando 3 agentes prontos, de graça.\n\n#atendimento #whatsappbusiness #agentesdeIA #pequenosnegócios"
+      "caption": "Todo pequeno negócio perde venda por demora no WhatsApp — e quase nunca percebe, porque o cliente não avisa que desistiu.\n\nO que resolve não é acordar mais cedo. É ter um atendente que responde no seu tom, sabe seu preço e seu prazo, e que escala pra você quando é venda ou problema. Sem inventar resposta — essa é a regra que faz ele ser confiável.\n\nComenta AGENTE que eu te mando 3 agentes prontos, de graça.\n\n#atendimento #whatsappbusiness #agentesdeIA #pequenosnegócios",
+      "scheduled_elsewhere": "meta-business-suite 11:30 BRT"
     },
     {
       "id": 4,
-      "date": "2026-08-14",
+      "date": "2026-08-15",
       "title": "O estagiário de R$0 e o que eu proibi",
       "media_dir": "media/carrossel/post-4",
       "approved": false,
       "published_at": null,
       "permalink": null,
-      "caption": "Contratei um estagiário que custa R$0/mês. A parte que ninguém mostra é o que eu proibi ele de fazer.\n\nTodo agente que eu escrevo tem as duas listas: o que ele faz e o que ele nunca pode fazer. O atendente não inventa resposta. O financeiro não dá conselho de investimento. O de prospecção respeita o \"não\" do lead e a LGPD.\n\nDelegar sem essa segunda lista é como dar a chave da loja pra alguém no primeiro dia.\n\nComenta AGENTE que eu te mando 3 agentes prontos, de graça.\n\n#automação #agentesdeIA #IAparaNegócios #produtividade"
+      "caption": "Contratei um estagiário que custa R$0/mês. A parte que ninguém mostra é o que eu proibi ele de fazer.\n\nTodo agente que eu escrevo tem as duas listas: o que ele faz e o que ele nunca pode fazer. O atendente não inventa resposta. O financeiro não dá conselho de investimento. O de prospecção respeita o \"não\" do lead e a LGPD.\n\nDelegar sem essa segunda lista é como dar a chave da loja pra alguém no primeiro dia.\n\nComenta AGENTE que eu te mando 3 agentes prontos, de graça.\n\n#automação #agentesdeIA #IAparaNegócios #produtividade",
+      "scheduled_elsewhere": "meta-business-suite 11:30 BRT"
     },
     {
       "id": 5,
-      "date": "2026-08-15",
+      "date": "2026-08-16",
       "title": "Filmei sem corte (apoio do Reel)",
       "media_dir": "media/carrossel/post-5",
       "approved": false,
       "published_at": null,
       "permalink": null,
-      "caption": "Filmei o agente resolvendo em tempo real, sem corte e com cronômetro. Não é demo de propaganda — é a tarefa que eu faço toda semana.\n\nO que faz ele acertar o tom não é o pedido. É o manual que já está dentro dele.\n\nComenta AGENTE que eu te mando 3 agentes prontos, de graça.\n\n#agentesdeIA #automação #IAparaNegócios"
+      "caption": "Filmei o agente resolvendo em tempo real, sem corte e com cronômetro. Não é demo de propaganda — é a tarefa que eu faço toda semana.\n\nO que faz ele acertar o tom não é o pedido. É o manual que já está dentro dele.\n\nComenta AGENTE que eu te mando 3 agentes prontos, de graça.\n\n#agentesdeIA #automação #IAparaNegócios",
+      "scheduled_elsewhere": "meta-business-suite 11:30 BRT"
     },
     {
       "id": 6,
-      "date": "2026-08-16",
+      "date": "2026-08-17",
       "title": "Engenheiro, 2 horas, o molde (autoridade)",
       "media_dir": "media/carrossel/post-6",
       "approved": false,
       "published_at": null,
       "permalink": null,
-      "caption": "Sou engenheiro mecatrônico e levei 2 horas pra montar o meu primeiro agente. Não foi escrevendo — foi descobrindo o que precisava estar escrito.\n\nTom, contexto do negócio, limites, formato de saída e o que fazer quando não souber a resposta. Esse é o molde. Depois que ele existe, o próximo agente leva 20 minutos.\n\nComenta AGENTE que eu te mando 3 agentes prontos, de graça — já no molde.\n\n#agentesdeIA #engenharia #automação #IAparaNegócios"
+      "caption": "Sou engenheiro mecatrônico e levei 2 horas pra montar o meu primeiro agente. Não foi escrevendo — foi descobrindo o que precisava estar escrito.\n\nTom, contexto do negócio, limites, formato de saída e o que fazer quando não souber a resposta. Esse é o molde. Depois que ele existe, o próximo agente leva 20 minutos.\n\nComenta AGENTE que eu te mando 3 agentes prontos, de graça — já no molde.\n\n#agentesdeIA #engenharia #automação #IAparaNegócios",
+      "scheduled_elsewhere": "meta-business-suite 11:30 BRT"
     },
     {
       "id": 7,
-      "date": "2026-08-17",
+      "date": "2026-08-18",
       "title": "Quanto custa alguém 24/7 (conta na mesa)",
       "media_dir": "media/carrossel/post-7",
       "approved": false,
       "published_at": null,
       "permalink": null,
-      "caption": "Quanto custa alguém respondendo mensagem 24/7? Fiz a conta na frente de vocês — e o ponto não é \"demita alguém\".\n\nÉ que existe uma faixa de trabalho repetido que não deveria consumir nem o seu tempo nem o salário de ninguém. Pergunta que se repete, orçamento que precisa de lembrete, post que precisa sair toda semana.\n\nIsso um agente segura. O resto continua sendo humano.\n\nComenta AGENTE que eu te mando 3 agentes prontos, de graça.\n\n#agentesdeIA #gestão #pequenosnegócios #automação"
+      "caption": "Quanto custa alguém respondendo mensagem 24/7? Fiz a conta na frente de vocês — e o ponto não é \"demita alguém\".\n\nÉ que existe uma faixa de trabalho repetido que não deveria consumir nem o seu tempo nem o salário de ninguém. Pergunta que se repete, orçamento que precisa de lembrete, post que precisa sair toda semana.\n\nIsso um agente segura. O resto continua sendo humano.\n\nComenta AGENTE que eu te mando 3 agentes prontos, de graça.\n\n#agentesdeIA #gestão #pequenosnegócios #automação",
+      "scheduled_elsewhere": "meta-business-suite 11:30 BRT"
     }
   ]
 }

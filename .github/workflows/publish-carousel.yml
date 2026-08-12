@@ -24,8 +24,19 @@ on:
         required: false
         type: boolean
         default: false
-  schedule:
-    - cron: "30 14 * * *"
+  # CRON DESLIGADO em 2026-08-11, a pedido do Caio, ate retomarmos.
+  #
+  # Motivo: os posts passaram a ser agendados a mao no Meta Business Suite (Planner),
+  # que funciona sem token e se mostrou mais simples. Com o cron ligado, o dia em que
+  # o token existir ele republicaria posts que ja sairam pelo Planner — duplicata no
+  # feed, irreversivel. O `approved: false` do schedule.json ja barra isso, mas cinto
+  # e suspensorio: enquanto a via manual for a oficial, o relogio fica parado.
+  #
+  # Para religar: descomentar as 2 linhas abaixo E revisar automation/schedule.json
+  # item a item (todos estao com scheduled_elsewhere marcado).
+  #
+  # schedule:
+  #   - cron: "30 14 * * *"
 
 permissions:
   contents: write

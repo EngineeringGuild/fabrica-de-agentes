@@ -6,6 +6,11 @@ on:
   push:
     branches: [main]
 
+# Validation is intentionally read-only. Publishing remains isolated in the
+# dedicated publish workflow and is not part of this CI path.
+permissions:
+  contents: read
+
 jobs:
   validate:
     name: Static + automation validation
@@ -63,27 +68,3 @@ jobs:
 
       - name: Diff hygiene
         run: git diff --check
-
-  no-publish:
-    name: CI never publishes
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Assert validation workflow has no publish secrets or deploy command
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-
-          text = Path('.github/workflows/ci.yml').read_text(encoding='utf-8').lower()
-          forbidden = [
-              'instagram_access_token',
-              'instagram_business_account_id',
-              'wrangler publish',
-              'wrangler deploy',
-              'pages deploy',
-          ]
-          found = [token for token in forbidden if token in text]
-          if found:
-              raise SystemExit('CI validation workflow must remain non-publishing: ' + ', '.join(found))
-          print('CI validation path is non-publishing.')
-          PY

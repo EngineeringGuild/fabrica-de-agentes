@@ -1,0 +1,10 @@
+# Texto alternativo — colar no campo de cada slide ao agendar.
+# A busca do Instagram indexa alt text. Se o app cortar, mantenha a 1a frase.
+
+slide 01: QUANTO CUSTA ALGUÉM RESPONDENDO 24/7? Fiz a conta na sua frente.
+slide 02: Meio período só pra responder mensagem: salário, encargos, treinamento — e o seu tempo gerenciando.
+slide 03: E ainda assim: dorme, folga, adoece, e um dia pede demissão levando o que aprendeu.
+slide 04: Agente: responde 24/7, não esquece o que aprendeu, e o que ele sabe fica escrito num arquivo SEU.
+slide 05: Não é substituto de gente. É o que segura o operacional repetido enquanto você faz o que só você faz.
+slide 06: Custo da ferramenta: R$0. O que custa é o manual — e ele já está escrito.
+slide 07: Comenta AGENTE que eu te mando 3 agentes prontos, de graça.

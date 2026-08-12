@@ -1,0 +1,10 @@
+# Texto alternativo — colar no campo de cada slide ao agendar.
+# A busca do Instagram indexa alt text. Se o app cortar, mantenha a 1a frase.
+
+slide 01: 3 AGENTES QUE VOCÊ MONTA HOJE. Sem programar. Sem mensalidade nova.
+slide 02: 1. ATENDENTE Responde as perguntas repetidas do WhatsApp em segundos, no seu tom — e te chama quando é venda ou problema.
+slide 03: 2. FOLLOW-UP A maioria das vendas não é recusada. É esquecida. Ele lembra do orçamento parado por você.
+slide 04: 3. CONTEÚDO Calendário de 30 dias + posts prontos, a partir do que o seu negócio realmente faz.
+slide 05: Todos rodam no plano GRATUITO do ChatGPT, Claude ou Gemini. Você já tem a ferramenta.
+slide 06: O que falta não é IA. É o manual de cada um.
+slide 07: Comenta AGENTE que eu te mando os 3 prontos, de graça.

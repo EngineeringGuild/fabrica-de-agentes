@@ -1,0 +1,9 @@
+# Texto alternativo — colar no campo de cada slide ao agendar.
+# A busca do Instagram indexa alt text. Se o app cortar, mantenha a 1a frase.
+
+slide 01: ESSE PROMPT ESTÁ ERRADO. Você consegue ver onde?
+slide 02: “Escreve uma resposta pro cliente que perguntou o preço.” É isso. Foi só isso que eu mandei.
+slide 03: O que voltou: um texto simpático, com “olá!”, “ficamos felizes com seu interesse” — e nenhum preço.
+slide 04: Faltou: qual preço. Qual cliente. Que tom. E o que fazer se ele pedir desconto.
+slide 05: Quatro coisas que eu sei de cabeça e não escrevi. Ela não adivinha o que está na sua cabeça.
+slide 06: Escrevi esse ruim de propósito. Mas já mandei um igual, sem querer, umas trinta vezes.

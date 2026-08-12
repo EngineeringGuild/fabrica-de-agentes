@@ -1,0 +1,14 @@
+Como fazer o ChatGPT parar de chutar resposta: uma linha no fim do pedido.
+
+"Antes de responder, me faça as 3 perguntas que faltam pra você acertar."
+
+Em vez de inventar o que faltou, ela pergunta. E as perguntas que ela faz costumam ser exatamente as que você esqueceu de responder.
+
+O problema quase nunca é a ferramenta. É que ela recebeu metade do contexto e não tinha permissão de pedir o resto.
+
+Esse aqui é pra quem já reescreveu o mesmo pedido quatro vezes achando que estava explicando mal.
+
+#chatgpt #IAparaNegócios #produtividade #automação
+
+---
+Agendado: 2026-08-19 11:30 BRT  |  A linha: as 3 perguntas que faltam

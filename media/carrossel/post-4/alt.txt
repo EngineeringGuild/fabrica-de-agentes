@@ -1,0 +1,10 @@
+# Texto alternativo — colar no campo de cada slide ao agendar.
+# A busca do Instagram indexa alt text. Se o app cortar, mantenha a 1a frase.
+
+slide 01: CONTRATEI UM ESTAGIÁRIO DE R$0/MÊS. Olha o que eu entreguei pra ele.
+slide 02: Regra que eu segui: só delego o que eu já sei fazer e odeio fazer.
+slide 03: ENTROU NA LISTA Responder pergunta repetida. Lembrar orçamento parado. Rascunhar post. Organizar entrada e saída da semana.
+slide 04: FICOU DE FORA Falar preço final. Prometer prazo. Dar conselho de dinheiro. Qualquer coisa que assine meu nome sem eu ver.
+slide 05: Essa segunda lista é a parte que quase ninguém escreve — e é ela que impede o vexame.
+slide 06: Um agente sem “o que nunca fazer” não é funcionário. É risco.
+slide 07: Comenta AGENTE que eu te mando 3 agentes prontos, de graça.

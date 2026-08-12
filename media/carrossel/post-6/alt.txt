@@ -1,0 +1,10 @@
+# Texto alternativo — colar no campo de cada slide ao agendar.
+# A busca do Instagram indexa alt text. Se o app cortar, mantenha a 1a frase.
+
+slide 01: LEVEI 2 HORAS PRA MONTAR O PRIMEIRO. Você leva 20 minutos.
+slide 02: Sou engenheiro mecatrônico. Passei a carreira fazendo máquina repetir processo sem errar.
+slide 03: Agente é a mesma coisa, em texto: entrada definida, regra clara, saída previsível.
+slide 04: As 2 horas do primeiro não foram escrevendo. Foram descobrindo O QUE precisava estar escrito.
+slide 05: Tom. Contexto do negócio. Limites. Formato de saída. O que fazer quando não souber.
+slide 06: Depois que o molde existe, o próximo agente sai em 20 minutos. Por isso eu escrevi 10.
+slide 07: Comenta AGENTE que eu te mando 3 agentes prontos, de graça.

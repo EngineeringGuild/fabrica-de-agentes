@@ -1,0 +1,9 @@
+# Texto alternativo — colar no campo de cada slide ao agendar.
+# A busca do Instagram indexa alt text. Se o app cortar, mantenha a 1a frase.
+
+slide 01: PASSEI A SEMANA MOSTRANDO PEDAÇO. Hoje eu mostro de onde eles saem.
+slide 02: TODO AGENTE QUE EU ESCREVO TEM 5 PARTES. É sempre a mesma estrutura.
+slide 03: Quem ele é. O que sabe do seu negócio. O que nunca pode fazer. O formato exato da resposta. E o que fazer quando não souber.
+slide 04: A terceira é a que quase ninguém escreve. A quinta é a que evita vexame.
+slide 05: Três desses eu libero completos, de graça. Não é amostra cortada — é o arquivo inteiro.
+slide 06: Comenta AGENTE que eu te mando os 3 prontos.

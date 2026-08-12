@@ -1,0 +1,7 @@
+# Texto alternativo — colar no campo de cada slide ao agendar.
+# A busca do Instagram indexa alt text. Se o app cortar, mantenha a 1a frase.
+
+slide 01: ISSO É NORMAL? Tenho 4 orçamentos parados no arquivado do WhatsApp.
+slide 02: ABRI O ARQUIVADO HOJE. ACHEI UM DE MAIO. A pessoa nunca respondeu. Eu também nunca cobrei.
+slide 03: Não é desorganização. É que “lembrar de cobrar” não é tarefa de ninguém — então não é de ninguém.
+slide 04: Me diz que não sou só eu.

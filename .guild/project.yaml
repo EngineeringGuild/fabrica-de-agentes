@@ -1,0 +1,27 @@
+guildProjectVersion: "1"
+idea: IDEA-006
+slug: fabrica-de-agentes
+name: Fábrica de Agentes
+tagline: "10 ready-made AI agents for small businesses (PT-BR). Live, selling, first product shipped."
+kind: product
+accent: money
+
+lifecycle:
+  status: operational
+  since: "2026-06-18"
+  evidence: "https://fabricadeagentes.caiocastilho.com/ verified 200 2026-08-13; GitHub Pages build=success; live Hotmart checkout (R$47) + 3 downloadable PDFs served"
+
+valueProp:
+  for: "small business owners in Brazil with no coding ability"
+  does: "gives 10 ready-to-use AI agent prompts plus an implementation guide"
+  insteadOf: "hiring a developer or a consultant to set up AI tooling"
+
+artifacts:
+  - type: offer
+    title: "Pack Fábrica de Agentes (R$47)"
+    url: "https://fabricadeagentes.caiocastilho.com/"
+
+visibility:
+  listed: true
+  detail: public
+  publicFields: [identity, artifacts, metrics]

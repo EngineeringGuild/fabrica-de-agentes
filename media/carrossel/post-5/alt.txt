@@ -1,0 +1,8 @@
+# Texto alternativo — colar no campo de cada slide ao agendar.
+# A busca do Instagram indexa alt text. Se o app cortar, mantenha a 1a frase.
+
+slide 01: FILMEI SEM CORTE. Cronômetro rodando na tela.
+slide 02: 5 temas. É só o que eu dou pra ele.
+slide 03: Ele já sabe meu tom, meu público e o que eu nunca falo — isso está escrito no agente, não no pedido.
+slide 04: 5 posts prontos. Vou revisar, não reescrever.
+slide 05: Comenta AGENTE que eu te mando 3 agentes prontos, de graça.

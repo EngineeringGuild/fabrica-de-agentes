@@ -1,0 +1,10 @@
+# Texto alternativo — colar no campo de cada slide ao agendar.
+# A busca do Instagram indexa alt text. Se o app cortar, mantenha a 1a frase.
+
+slide 01: EU LEVAVA 3 HORAS NISSO. Agora levo 4 minutos.
+slide 02: Escrever 5 posts da semana era: abrir doc em branco, lembrar o tom, escrever, revisar — e travar no terceiro.
+slide 03: Aí eu parei de pedir “escreve um post pra mim”.
+slide 04: Passei a CONTRATAR a IA: quem ela é, o que sabe do meu negócio, o que nunca pode fazer, e o formato exato de saída.
+slide 05: Isso tem nome: agente. É a mesma IA — com manual de funcionário.
+slide 06: Dou 5 temas. Recebo 5 posts prontos no meu tom. 4 minutos.
+slide 07: Comenta AGENTE que eu te mando 3 agentes prontos, de graça.

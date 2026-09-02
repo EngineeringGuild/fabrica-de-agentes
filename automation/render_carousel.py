@@ -524,7 +524,229 @@ LOTE_3 = [
     },
 ]
 
-BATCHES = {2: LOTE_2, 3: LOTE_3}
+# LOTE 4 — TRACK B "Rouba o prompt" (08→19/09). Pivot da linha de comunicação.
+# Plano: project-money/docs/plans/2026-09-02-pivot-linha-de-comunicacao-B-C.md
+# Fonte: project-money/docs/factories/f-video/scripts/batch-fabricadeagentes-04-rouba-o-prompt.md
+# Regra-chave vs. LOTE_2: CTA ("Comenta AGENTE") só nos posts de conversão (D4/D9);
+# os outros 8 entregam o prompt na tela e não pedem nada. Slide com cta:True = fundo
+# âmbar = "isto é pra dar print".
+
+LOTE_4 = [
+    {
+        "id": 16, "date": "2026-09-08", "title": "A linha: repete o que você entendeu", "series": "A LINHA",
+        "caption": (
+            "Como fazer o ChatGPT parar de entender errado o que você pediu: uma linha antes do pedido.\n\n"
+            "\"Antes de começar, repita com suas palavras o que você entendeu que eu quero. Se algo estiver "
+            "ambíguo, me pergunte primeiro.\"\n\n"
+            "Ela devolve o que entendeu, você corrige numa frase, e só então ela escreve. Parece bobo, mas é a "
+            "diferença entre ajustar uma linha agora e reescrever tudo depois.\n\n"
+            "Esse é pra quem já recebeu 4 parágrafos perfeitos sobre a coisa errada.\n\n"
+            "#chatgpt #IAparaNegócios #produtividade #prompt"
+        ),
+        "slides": [
+            {"title": "A IA FEZ TUDO ERRADO?", "body": "Você não explicou mal. Faltou uma linha."},
+            {"title": "COLA ISSO ANTES DE QUALQUER PEDIDO:", "body": "e ela para de chutar."},
+            {"body": "“Antes de começar, repita com suas palavras o que você entendeu que eu quero. Se algo estiver ambíguo, me pergunte primeiro.”", "cta": True},
+            {"body": "Ela devolve o resumo, você corrige em 10 segundos, e aí ela executa. O erro caro é o que você pega DEPOIS de 3 parágrafos prontos."},
+        ],
+    },
+    {
+        "id": 17, "date": "2026-09-09", "title": "Antes e depois: resume a reunião", "series": "ANTES E DEPOIS",
+        "caption": (
+            "Como resumir reunião no ChatGPT sem receber um textão inútil: peça a estrutura, não o resumo.\n\n"
+            "Em vez de \"resume essa reunião\", peça: decisões tomadas, quem ficou responsável pelo quê e até "
+            "quando, e o que ficou em aberto.\n\n"
+            "A IA não sabe o que importa pra você — a não ser que você diga. \"Resumir\" pra ela é encolher o "
+            "texto. Pra você é saber o próximo passo.\n\n"
+            "#chatgpt #produtividade #IAparaNegócios #reunião"
+        ),
+        "slides": [
+            {"title": "MESMO PEDIDO. MESMA IA. DUAS RESPOSTAS.", "body": "A diferença são 2 linhas."},
+            {"title": "“RESUME ESSA REUNIÃO”", "body": "devolve um textão que você não vai ler."},
+            {"title": "PROMPT RUIM", "body": "“resume essa reunião: [transcrição]”", "cta": True},
+            {"title": "PROMPT BOM", "body": "“Dessa transcrição, me dê: 1) decisões tomadas, 2) quem ficou responsável pelo quê e até quando, 3) o que ficou em aberto. Só isso, em lista.”", "cta": True},
+            {"body": "O primeiro te dá um resumo. O segundo te dá o que fazer amanhã de manhã."},
+        ],
+    },
+    {
+        "id": 18, "date": "2026-09-10", "title": "Me corrige: faz um post sobre meu negócio", "series": "ME CORRIGE",
+        "caption": (
+            "Prompt ruim de ChatGPT: esse aqui está errado e eu escrevi de propósito.\n\n"
+            "\"Faz um post sobre meu negócio.\" Voltou um texto genérico com emoji de foguete, sobre coisa "
+            "nenhuma. E a culpa não é da ferramenta.\n\n"
+            "Faltou dizer que negócio, pra quem, sobre qual assunto, que tom e onde ia ser publicado.\n\n"
+            "Qual dessas cinco você mais esquece de escrever?\n\n"
+            "#chatgpt #prompt #IAparaNegócios #pequenosnegócios"
+        ),
+        "slides": [
+            {"title": "ESSE PROMPT ESTÁ ERRADO.", "body": "Você vê onde?"},
+            {"title": "“FAZ UM POST SOBRE MEU NEGÓCIO.”", "body": "Foi só isso que eu mandei. De verdade."},
+            {"body": "O que voltou: “Você sabia que a tecnologia pode transformar o seu negócio? Descubra como!” — genérico, com foguete, sobre nada."},
+            {"body": "Faltou: que negócio. Pra quem. Sobre qual assunto. Que tom. E onde ia ser publicado."},
+            {"body": "Cinco coisas que eu sei de cabeça e não escrevi. Ela não adivinha o que está só na sua cabeça."},
+            {"body": "Escrevi esse ruim de propósito. Mas já mandei um quase igual sem querer, umas vinte vezes."},
+        ],
+    },
+    {
+        "id": 19, "date": "2026-09-11", "title": "As 5 partes de um prompt bom (CONVERSÃO)", "series": None,
+        "caption": (
+            "Todo prompt bom que eu uso tem as mesmas 5 partes: quem responde, o que sabe do meu negócio, o que "
+            "nunca pode fazer, o formato exato da saída, e o que fazer quando não souber.\n\n"
+            "Junta as 5 num arquivo, reusa, e você para de escrever prompt do zero toda vez.\n\n"
+            "Montei 10 desses. Os 3 mais úteis pra quem toca negócio pequeno — atendimento, follow-up de "
+            "orçamento e conteúdo — eu libero completos, de graça.\n\n"
+            "Comenta AGENTE que eu te mando os 3 no direct (sem programar nada).\n\n"
+            "#agentesdeIA #automação #IAparaNegócios #pequenosnegócios"
+        ),
+        "slides": [
+            {"title": "PASSEI A SEMANA POSTANDO PROMPT SOLTO.", "body": "Hoje eu mostro de onde eles saem."},
+            {"title": "TODO PROMPT BOM QUE EU USO TEM AS MESMAS 5 PARTES."},
+            {"body": "Quem responde. O que ela sabe do meu negócio. O que ela NUNCA pode fazer. O formato exato da saída. E o que fazer quando não souber."},
+            {"body": "Quando você junta essas 5 num arquivo e reusa, para de escrever prompt do zero toda vez. Vira uma coisa só, pronta."},
+            {"body": "Eu montei 10 dessas pra minha operação. 3 delas eu libero completas, de graça — o arquivo inteiro, não amostra."},
+            {"title": "Comenta AGENTE", "body": "que eu te mando os 3, no direct.", "cta": True},
+        ],
+    },
+    {
+        "id": 20, "date": "2026-09-12", "title": "O cardápio: sem digitar (áudio)", "series": "O CARDÁPIO",
+        "caption": (
+            "O que a IA gratuita já faz pra você só com áudio, sem digitar nada: áudio longo de cliente vira "
+            "lista, desabafo vira resposta educada, orçamento falado vira texto formatado, reunião gravada vira "
+            "decisões e responsáveis.\n\n"
+            "Todo mundo já usa a transcrição do WhatsApp. Quase ninguém joga esse texto na IA logo em seguida "
+            "com um pedido do que fazer com ele.\n\n"
+            "Qual dessas seis você começaria hoje?\n\n"
+            "#IAparaNegócios #chatgpt #produtividade #pequenosnegócios #automação"
+        ),
+        "slides": [
+            {"title": "O CARDÁPIO — SEM DIGITAR", "body": "6 coisas que você resolve mandando áudio pra IA."},
+            {"title": "VOCÊ FALA. ELA TRANSCREVE, ORGANIZA E DEVOLVE PRONTO.", "body": "No plano grátis."},
+            {"title": "1. O ÁUDIO DO CLIENTE", "body": "Áudio de 4 min → 3 linhas + lista do que ele pediu."},
+            {"title": "2. O DIA DIRIGINDO", "body": "Você narra o dia → lista de tarefas de amanhã, priorizada."},
+            {"title": "3. O DESABAFO", "body": "Você fala o que sentiu do cliente chato → a resposta educada que dá pra mandar."},
+            {"title": "4. O ORÇAMENTO FALADO", "body": "Você diz em voz alta → texto formatado pra colar no WhatsApp."},
+            {"title": "5 E 6. REUNIÃO E IDEIA", "body": "Reunião gravada → decisões + responsáveis. Ideia no chuveiro → rascunho antes de esquecer."},
+            {"body": "Todas funcionam ditando. A parte difícil nunca foi digitar — era sentar pra fazer."},
+        ],
+    },
+    {
+        "id": 21, "date": "2026-09-15", "title": "A linha: antialucinação", "series": "A LINHA",
+        "caption": (
+            "Como fazer o ChatGPT parar de inventar resposta: dê permissão explícita pra ele dizer que não "
+            "sabe.\n\n"
+            "\"Se você não tem certeza de algo, diga 'não sei' e me pergunte. Não preencha com suposição.\"\n\n"
+            "A IA inventa porque, sem essa instrução, o comportamento padrão dela é sempre entregar algo — mesmo "
+            "quando o algo é chute. Ela não distingue \"eu sei\" de \"eu completei o padrão\".\n\n"
+            "Esse é pra quem já mandou pro cliente um dado que a IA \"tinha certeza\" que estava certo.\n\n"
+            "#chatgpt #IAparaNegócios #alucinação #prompt"
+        ),
+        "slides": [
+            {"title": "A IA INVENTA COM CONFIANÇA?", "body": "Uma linha resolve 80% disso."},
+            {"title": "ELA MENTE PORQUE NINGUÉM DEU PERMISSÃO PRA ELA DIZER “NÃO SEI”."},
+            {"body": "“Se você não tem certeza de algo, diga ‘não sei’ e me pergunte. Não preencha com suposição. Prefiro incompleto e correto a completo e inventado.”", "cta": True},
+            {"body": "Isso não deixa ela 100% confiável. Mas troca “número errado dito com firmeza” por “não sei, me confirma isso” — que é o que um funcionário bom faz."},
+        ],
+    },
+    {
+        "id": 22, "date": "2026-09-16", "title": "A palavra que muda tudo: melhora", "series": "A PALAVRA",
+        "caption": (
+            "A palavra que estraga seus pedidos pro ChatGPT: \"melhora\".\n\n"
+            "Pra IA, \"melhorar um texto\" quase sempre significa deixar mais longo, mais formal e mais cheio de "
+            "adjetivo — o oposto do que você queria.\n\n"
+            "Troque por uma direção concreta: \"reescreve em 40 palavras sem adjetivo\" ou \"reescreve como "
+            "pessoa falando, não e-mail corporativo\".\n\n"
+            "Qual palavra vaga você mais usa com a IA?\n\n"
+            "#chatgpt #copywriting #IAparaNegócios #produtividade"
+        ),
+        "slides": [
+            {"title": "“MELHORA ESSE TEXTO” É O PIOR PEDIDO QUE EXISTE.", "body": "Olha o que acontece."},
+            {"title": "“MELHORAR” PRA IA = ENCHER DE ADJETIVO.", "body": "Seu texto sai mais longo e mais falso."},
+            {"title": "EM VEZ DE “MELHORA”:", "body": "“Reescreva em no máximo 40 palavras, sem adjetivo, direto ao ponto.”", "cta": True},
+            {"title": "OU:", "body": "“Reescreva pra soar como uma pessoa falando, não como e-mail corporativo.”", "cta": True},
+            {"body": "“Melhorar” não é instrução — é torcida. A IA precisa saber melhor EM QUAL DIREÇÃO."},
+        ],
+    },
+    {
+        "id": 23, "date": "2026-09-17", "title": "Me corrige: responde esse cliente irritado", "series": "ME CORRIGE",
+        "caption": (
+            "Prompt perigoso de ChatGPT: \"responde esse cliente irritado pra mim\".\n\n"
+            "Sem contexto, a IA vai fazer o que parece mais educado: pedir desculpas e ceder. Inclusive quando a "
+            "culpa não é sua e a concessão sai do seu bolso.\n\n"
+            "Ela precisa saber: o que aconteceu de verdade, se você errou, o que pode oferecer, e o que você não "
+            "vai prometer de jeito nenhum.\n\n"
+            "Qual desses 4 você acha mais difícil de escrever antes?\n\n"
+            "#atendimento #chatgpt #IAparaNegócios #pequenosnegócios"
+        ),
+        "slides": [
+            {"title": "ESSE PROMPT VAI TE METER EM ENCRENCA.", "body": "Consegue ver por quê?"},
+            {"title": "“RESPONDE ESSE CLIENTE IRRITADO PRA MIM: [print]”"},
+            {"body": "O que voltou: um pedido de desculpas genérico que ASSUMIU a culpa por um problema que talvez não seja seu."},
+            {"body": "Faltou: o que de fato aconteceu. Se você errou ou não. O que você pode oferecer. E o limite — o que você NÃO vai prometer."},
+            {"body": "A IA quer resolver o conflito rápido. Ela cede o que for preciso, porque não é o dinheiro dela."},
+            {"body": "Cliente irritado é o pior caso pra deixar a IA no automático. Ela precisa da sua régua, escrita."},
+        ],
+    },
+    {
+        "id": 24, "date": "2026-09-18", "title": "A lista do que eu proibi (CONVERSÃO)", "series": None,
+        "caption": (
+            "A parte de usar IA no negócio que quase ninguém mostra: a lista do que ela NÃO pode fazer.\n\n"
+            "Não inventar resposta, não falar preço final, não prometer prazo, não dar conselho de dinheiro, "
+            "não assinar meu nome sem eu ver, respeitar o \"não\" do cliente e a LGPD.\n\n"
+            "Delegar sem essa lista é dar a chave da loja pra alguém no primeiro dia.\n\n"
+            "Comenta AGENTE que eu te mando 3 prontos, com as duas listas escritas, de graça.\n\n"
+            "#agentesdeIA #automação #IAparaNegócios #LGPD"
+        ),
+        "slides": [
+            {"title": "TODO MUNDO MOSTRA O QUE A IA DELE FAZ.", "body": "Eu mostro o que eu proibi."},
+            {"title": "É A LISTA QUE SEPARA “FERRAMENTA” DE “RISCO”."},
+            {"body": "Não inventa resposta — quando não sabe, passa pra mim. Não fala preço final. Não promete prazo. Não dá conselho de dinheiro."},
+            {"body": "Não assina meu nome em nada sem eu ver. Respeita o “não” do cliente e a LGPD. Não usa dado com nome de gente."},
+            {"body": "Essa segunda lista é a parte que quase ninguém escreve — e é ela que evita o vexame na frente do cliente."},
+            {"title": "Comenta AGENTE", "body": "te mando 3 prontos, com as duas listas, de graça.", "cta": True},
+        ],
+    },
+    {
+        "id": 25, "date": "2026-09-19", "title": "O cardápio de domingo à noite", "series": "O CARDÁPIO",
+        "caption": (
+            "O cardápio de domingo à noite: 20 minutos com a IA e a segunda-feira começa com você executando, "
+            "não decidindo.\n\n"
+            "Pendências da semana passada em lista, buracos da agenda, follow-up de cada orçamento parado pronto "
+            "pra enviar, rascunhos dos posts da semana, e 3 perguntas pra se preparar pra conversa mais "
+            "difícil.\n\n"
+            "A parte que trava a semana não é o trabalho — é decidir por onde começar. Isso a IA faz domingo.\n\n"
+            "Qual desses 5 você faria primeiro?\n\n"
+            "#produtividade #IAparaNegócios #pequenosnegócios #chatgpt #organização"
+        ),
+        "slides": [
+            {"title": "O CARDÁPIO DE DOMINGO À NOITE", "body": "20 minutos com a IA e a semana já começa pronta."},
+            {"title": "NÃO É PLANEJAR A SEMANA.", "body": "É a IA fazer a parte chata do planejamento."},
+            {"title": "1. AS PENDÊNCIAS", "body": "Joga as anotações da semana passada → o que ficou pendente, em lista."},
+            {"title": "2. OS BURACOS DA AGENDA", "body": "Cola sua agenda → onde estão os buracos e o que dá pra encaixar."},
+            {"title": "3. OS FOLLOW-UPS", "body": "Lista os orçamentos em aberto → a mensagem de cada um, pronta pra enviar segunda."},
+            {"title": "4. O CONTEÚDO", "body": "Diz os 3 temas da semana → os 3 rascunhos, no seu tom."},
+            {"title": "5. A CONVERSA DIFÍCIL", "body": "Descreve o cliente mais difícil → 3 perguntas pra te preparar antes."},
+            {"body": "Segunda de manhã você executa em vez de decidir. A decisão já foi tomada domingo, em 20 min."},
+        ],
+    },
+    {
+        "id": 26, "date": "2026-09-20", "title": "POV: 19h, 12 mensagens sem responder (RESERVA)", "series": "POV",
+        "caption": (
+            "POV: você fechou a loja às 19h e ainda tem 12 \"bom dia, tudo bem?\" sem resposta, nenhum dizendo o "
+            "que a pessoa quer.\n\n"
+            "Não é falta de organização. É que atender virou dezenas de conversas paralelas que começam do "
+            "zero, e todas caem em você.\n\n"
+            "Manda pra alguém que atende cliente e vai reconhecer.\n\n"
+            "#whatsappbusiness #pequenosnegócios #atendimento #empreendedorismo"
+        ),
+        "slides": [
+            {"title": "POV: SÃO 19H, VOCÊ FECHOU A LOJA", "body": "e ainda tem 12 mensagens de “bom dia, tudo bem?” sem responder."},
+            {"title": "NENHUMA DIZ O QUE A PESSOA QUER.", "body": "Mas responder todas é o seu trabalho agora."},
+            {"body": "Não é que você é devagar. É que “atender” virou 40 conversas paralelas que começam do zero toda vez."},
+        ],
+    },
+]
+
+BATCHES = {2: LOTE_2, 3: LOTE_3, 4: LOTE_4}
 
 
 def main() -> int:

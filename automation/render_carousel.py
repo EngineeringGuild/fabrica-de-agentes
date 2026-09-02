@@ -47,9 +47,16 @@ import sys
 from PIL import Image, ImageDraw, ImageFont
 
 # ---------------------------------------------------------------- identidade
+#
+# Estilo v2 (2026-09-02, ordem do Caio: "algumas letras no meio da página não é
+# chamativo"). Base ANOTADA — número fantasma + selo pill + marcador âmbar na
+# frase-chave (campo `hl`) + pontinhos de progresso — e MOLDURA DE CHAT nos slides
+# de prompt (campo `prompt: True`), que fazem o prompt parecer um print de verdade.
 W, H = 1080, 1350
 INK = (16, 21, 29)          # #10151d — fundo padrão (igual --ink da LP)
+INK_PANEL = (26, 34, 46)    # um tom acima do fundo — cartão de chat
 WHITE = (255, 255, 255)
+MUTE = (150, 163, 180)
 AMBER = (232, 176, 75)      # #e8b04b — igual --accent da LP
 MARGIN = 92
 
@@ -59,8 +66,16 @@ MIN_FONT_WARN = 40
 FONT_DIR = r"C:\Windows\Fonts"
 F_BOLD = os.path.join(FONT_DIR, "segoeuib.ttf")
 F_REG = os.path.join(FONT_DIR, "segoeui.ttf")
+F_BLACK = os.path.join(FONT_DIR, "seguibl.ttf")      # Segoe UI Black — título e nº hero
+F_MONO = os.path.join(FONT_DIR, "consola.ttf")       # Consolas — texto do prompt
 if not os.path.exists(F_BOLD):                       # fallback
     F_BOLD, F_REG = os.path.join(FONT_DIR, "arialbd.ttf"), os.path.join(FONT_DIR, "arial.ttf")
+if not os.path.exists(F_BLACK):
+    F_BLACK = F_BOLD
+if not os.path.exists(F_MONO):
+    F_MONO = os.path.join(FONT_DIR, "cour.ttf")
+    if not os.path.exists(F_MONO):
+        F_MONO = F_REG
 
 HANDLE = "@fabricadeagentesai"
 SLOT = "11:30 BRT"
@@ -104,64 +119,159 @@ def fit_block(draw, text, path, max_w, max_h, start, min_size=30):
     return fnt, wrap(draw, text, fnt, max_w), int(min_size * 1.22)
 
 
+def _ghost_number(img, idx, accent, cta):
+    """Numeral gigante semitransparente no canto — dá profundidade e marca 'é carrossel'."""
+    gf = font(F_BLACK, 660)
+    gn = str(idx)
+    ov = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    od = ImageDraw.Draw(ov)
+    gw = od.textlength(gn, font=gf)
+    alpha = 26 if not cta else 34
+    od.text((W - gw + 48, H - 690), gn, font=gf, fill=(*accent, alpha))
+    return Image.alpha_composite(img.convert("RGBA"), ov).convert("RGB")
+
+
+def _seal(d, series, idx, total, bg, accent):
+    """Selo pill: SÉRIE · 03/07. Reconhecível antes de ler (FORMAT_BANK.md)."""
+    sf = font(F_BOLD, 27)
+    label = f"  {series} · {idx:02d}/{total:02d}  " if series else f"  {idx:02d} / {total:02d}  "
+    lw = d.textlength(label, font=sf)
+    d.rounded_rectangle([MARGIN, 118, MARGIN + lw, 168], radius=25, fill=accent)
+    d.text((MARGIN, 127), label, font=sf, fill=bg)
+
+
+def _dots(d, idx, total, accent, cta):
+    """Pontinhos de progresso — 'tem mais, desliza'. Substitui o '03/07' seco."""
+    r, gap, y = 8, 30, H - 104
+    x = MARGIN
+    for i in range(total):
+        if i == idx - 1:
+            d.ellipse([x, y, x + 2 * r, y + 2 * r], fill=accent)
+        else:
+            d.ellipse([x, y, x + 2 * r, y + 2 * r], outline=accent, width=3)
+        x += gap
+
+
+def _watermark(img, d, cta, accent):
+    fw = font(F_REG, 27)
+    tw = int(d.textlength(HANDLE, font=fw))
+    wm = Image.new("RGBA", (tw + 8, 42), (0, 0, 0, 0))
+    ImageDraw.Draw(wm).text((0, 0), HANDLE, font=fw,
+                            fill=(*INK, 150) if cta else (*accent, 150))
+    img.paste(wm, (W - MARGIN - tw, H - 100), wm)
+
+
+def _draw_highlight(d, x, y, w, h, cta):
+    """Retângulo âmbar arredondado atrás da frase-chave (efeito marcador de texto)."""
+    d.rounded_rectangle([x - 3, y - 2, x + w + 9, y + h + 8], radius=8,
+                        fill=INK if cta else AMBER)
+
+
+def _hl_span_in_line(ln, hl):
+    """Maior trecho contíguo de `hl` (por palavras) presente na linha. Trata o caso
+    de `hl` ter quebrado entre duas linhas: cada linha destaca a parte que tem."""
+    if not hl:
+        return None
+    words = hl.split()
+    for size in range(len(words), 0, -1):
+        for start in range(0, len(words) - size + 1):
+            frag = " ".join(words[start:start + size])
+            if frag in ln:
+                return frag
+    return None
+
+
+def _text_with_hl(d, lines, fnt, lh, x, y, fg, hl, cta):
+    """Escreve linhas; pinta o marcador âmbar atrás do trecho de `hl` em cada linha."""
+    hl_fg = AMBER if cta else INK
+    for ln in lines:
+        frag = _hl_span_in_line(ln, hl)
+        if frag:
+            pre, _, post = ln.partition(frag)
+            px = x + d.textlength(pre, font=fnt)
+            hw = d.textlength(frag, font=fnt)
+            _draw_highlight(d, px, y, hw, fnt.size, cta)
+            d.text((x, y), pre, font=fnt, fill=fg)
+            d.text((px, y), frag, font=fnt, fill=hl_fg)
+            d.text((px + hw, y), post, font=fnt, fill=fg)
+        else:
+            d.text((x, y), ln, font=fnt, fill=fg)
+        y += lh
+    return y
+
+
+def _render_chat(d, body, cap):
+    """Slide de prompt como janela de chat — parece um print de verdade (mais save/send)."""
+    pad = 56
+    top = 300
+    bottom = H - 250
+    d.rounded_rectangle([pad, top, W - pad, bottom], radius=34, fill=INK_PANEL)
+    for i, c in enumerate([(255, 95, 86), (255, 189, 46), (39, 201, 63)]):
+        cx = pad + 40 + i * 42
+        d.ellipse([cx, top + 32, cx + 22, top + 54], fill=c)
+    d.text((pad + 40, top + 82), "Você", font=font(F_BOLD, 28), fill=MUTE)
+
+    mf, lines, lh = fit_block(d, body, F_MONO, W - 2 * pad - 76, bottom - top - 200, 46, 30)
+    y = top + 132
+    for ln in lines:
+        d.text((pad + 38, y), ln, font=mf, fill=WHITE)
+        y += lh
+    if cap:
+        d.text((MARGIN, bottom + 40), cap, font=font(F_REG, 38), fill=MUTE)
+    return mf.size
+
+
 def render(slide: dict, idx: int, total: int, out: str, series: str | None = None) -> int:
     """Renderiza um slide. Devolve o menor corpo de fonte usado (para o aviso de legibilidade)."""
     cta = slide.get("cta", False)
+    is_prompt = slide.get("prompt", False)
     bg, fg, accent = (AMBER, INK, INK) if cta else (INK, WHITE, AMBER)
-
-    img = Image.new("RGB", (W, H), bg)
-    d = ImageDraw.Draw(img)
     box_w = W - 2 * MARGIN
 
-    # barra de destaque no topo
-    d.rectangle([MARGIN, 150, MARGIN + 130, 162], fill=accent)
+    img = Image.new("RGB", (W, H), bg)
+    img = _ghost_number(img, idx, accent, cta)
+    d = ImageDraw.Draw(img)
 
-    # Selo da série ao lado da barra. Série tem nome próprio e cadência fixa — o selo é
-    # o que faz a pessoa reconhecer o formato antes de ler (FORMAT_BANK.md).
-    if series:
-        fseal = font(F_BOLD, 26)
-        d.text((MARGIN + 130 + 26, 143), f"{series} · {idx:02d}", font=fseal, fill=accent)
+    _seal(d, series, idx, total, bg, accent)
 
-    # Área útil entre a barra de destaque e o rodapé. O bloco é medido primeiro e
-    # depois centralizado verticalmente — sem isso o texto encosta no topo e sobra
-    # um vazio grande embaixo (ruim no feed, onde o slide é visto inteiro).
-    TOP, BOTTOM = 240, H - 190
-    avail = BOTTOM - TOP
-    GAP = 34
+    smallest = 999
 
-    title, body = slide.get("title"), slide.get("body")
-    blocks, total_h, smallest = [], 0, 999
+    if is_prompt:
+        smallest = _render_chat(d, slide.get("body") or slide.get("title", ""),
+                                slide.get("cap"))
+    else:
+        TOP, BOTTOM = 250, H - 200
+        avail = BOTTOM - TOP
+        GAP = 32
+        title, body, hl = slide.get("title"), slide.get("body"), slide.get("hl")
+        blocks, total_h = [], 0
 
-    if title:
-        f, lines, lh = fit_block(d, title, F_BOLD, box_w, int(avail * 0.60), 84, 44)
-        blocks.append((f, lines, lh))
-        total_h += len(lines) * lh
-        smallest = min(smallest, f.size)
-    if body:
-        room = avail - total_h - (GAP if title else 0)
-        f, lines, lh = fit_block(d, body, F_REG if title else F_BOLD, box_w, room,
-                                 62 if title else 76, 30)
-        blocks.append((f, lines, lh))
-        total_h += len(lines) * lh + (GAP if title else 0)
-        smallest = min(smallest, f.size)
+        if title:
+            f, lines, lh = fit_block(d, title, F_BLACK, box_w, int(avail * 0.62), 92, 44)
+            blocks.append(("plain", f, lines, lh))
+            total_h += len(lines) * lh
+            smallest = min(smallest, f.size)
+        if body:
+            room = avail - total_h - (GAP if title else 0)
+            f, lines, lh = fit_block(d, body, F_REG if title else F_BOLD, box_w, room,
+                                     58 if title else 78, 30)
+            blocks.append(("hl", f, lines, lh))
+            total_h += len(lines) * lh + (GAP if title else 0)
+            smallest = min(smallest, f.size)
 
-    y = TOP + max(0, (avail - total_h) // 2)
-    for i, (f, lines, lh) in enumerate(blocks):
-        if i:
-            y += GAP
-        for ln in lines:
-            d.text((MARGIN, y), ln, font=f, fill=fg)
-            y += lh
+        y = TOP + max(0, (avail - total_h) // 2)
+        for i, (kind, f, lines, lh) in enumerate(blocks):
+            if i:
+                y += GAP
+            if kind == "hl":
+                y = _text_with_hl(d, lines, f, lh, MARGIN, y, fg, hl, cta)
+            else:
+                for ln in lines:
+                    d.text((MARGIN, y), ln, font=f, fill=fg)
+                    y += lh
 
-    # rodapé: contador + marca d'água
-    fs = font(F_BOLD, 30)
-    d.text((MARGIN, H - 108), f"{idx:02d}/{total:02d}", font=fs, fill=accent)
-    fw = font(F_REG, 28)
-    tw = d.textlength(HANDLE, font=fw)
-    wm = Image.new("RGBA", (int(tw) + 8, 44), (0, 0, 0, 0))
-    ImageDraw.Draw(wm).text((0, 0), HANDLE, font=fw,
-                            fill=(*accent, 160) if not cta else (*INK, 150))
-    img.paste(wm, (W - MARGIN - int(tw), H - 106), wm)
+    _dots(d, idx, total, accent, cta)
+    _watermark(img, d, cta, accent)
 
     img.save(out, "PNG", optimize=True)
     return smallest
@@ -544,10 +654,10 @@ LOTE_4 = [
             "#chatgpt #IAparaNegócios #produtividade #prompt"
         ),
         "slides": [
-            {"title": "A IA FEZ TUDO ERRADO?", "body": "Você não explicou mal. Faltou uma linha."},
+            {"title": "A IA FEZ TUDO ERRADO?", "body": "Você não explicou mal. Faltou uma linha.", "hl": "uma linha"},
             {"title": "COLA ISSO ANTES DE QUALQUER PEDIDO:", "body": "e ela para de chutar."},
-            {"body": "“Antes de começar, repita com suas palavras o que você entendeu que eu quero. Se algo estiver ambíguo, me pergunte primeiro.”", "cta": True},
-            {"body": "Ela devolve o resumo, você corrige em 10 segundos, e aí ela executa. O erro caro é o que você pega DEPOIS de 3 parágrafos prontos."},
+            {"body": "Antes de começar, repita com suas palavras o que você entendeu que eu quero. Se algo estiver ambíguo, me pergunte primeiro.", "prompt": True, "cap": "Cola no início de qualquer pedido."},
+            {"body": "Ela devolve o resumo, você corrige em 10 segundos, e aí ela executa. O erro caro é o que você pega DEPOIS de 3 parágrafos prontos.", "hl": "10 segundos"},
         ],
     },
     {
@@ -561,10 +671,10 @@ LOTE_4 = [
             "#chatgpt #produtividade #IAparaNegócios #reunião"
         ),
         "slides": [
-            {"title": "MESMO PEDIDO. MESMA IA. DUAS RESPOSTAS.", "body": "A diferença são 2 linhas."},
+            {"title": "MESMO PEDIDO. MESMA IA. DUAS RESPOSTAS.", "body": "A diferença são 2 linhas.", "hl": "2 linhas"},
             {"title": "“RESUME ESSA REUNIÃO”", "body": "devolve um textão que você não vai ler."},
-            {"title": "PROMPT RUIM", "body": "“resume essa reunião: [transcrição]”", "cta": True},
-            {"title": "PROMPT BOM", "body": "“Dessa transcrição, me dê: 1) decisões tomadas, 2) quem ficou responsável pelo quê e até quando, 3) o que ficou em aberto. Só isso, em lista.”", "cta": True},
+            {"body": "resume essa reunião: [transcrição]", "prompt": True, "cap": "O prompt ruim —"},
+            {"body": "Dessa transcrição, me dê: 1) decisões tomadas, 2) quem ficou responsável pelo quê e até quando, 3) o que ficou em aberto. Só isso, em lista.", "prompt": True, "cap": "O prompt bom —"},
             {"body": "O primeiro te dá um resumo. O segundo te dá o que fazer amanhã de manhã."},
         ],
     },
@@ -584,7 +694,7 @@ LOTE_4 = [
             {"body": "O que voltou: “Você sabia que a tecnologia pode transformar o seu negócio? Descubra como!” — genérico, com foguete, sobre nada."},
             {"body": "Faltou: que negócio. Pra quem. Sobre qual assunto. Que tom. E onde ia ser publicado."},
             {"body": "Cinco coisas que eu sei de cabeça e não escrevi. Ela não adivinha o que está só na sua cabeça."},
-            {"body": "Escrevi esse ruim de propósito. Mas já mandei um quase igual sem querer, umas vinte vezes."},
+            {"body": "Escrevi esse ruim de propósito. Mas já mandei um quase igual sem querer, umas vinte vezes.", "hl": "vinte vezes"},
         ],
     },
     {
@@ -603,7 +713,7 @@ LOTE_4 = [
             {"title": "TODO PROMPT BOM QUE EU USO TEM AS MESMAS 5 PARTES."},
             {"body": "Quem responde. O que ela sabe do meu negócio. O que ela NUNCA pode fazer. O formato exato da saída. E o que fazer quando não souber."},
             {"body": "Quando você junta essas 5 num arquivo e reusa, para de escrever prompt do zero toda vez. Vira uma coisa só, pronta."},
-            {"body": "Eu montei 10 dessas pra minha operação. 3 delas eu libero completas, de graça — o arquivo inteiro, não amostra."},
+            {"body": "Eu montei 10 dessas pra minha operação. 3 delas eu libero completas, de graça — o arquivo inteiro, não amostra.", "hl": "de graça"},
             {"title": "Comenta AGENTE", "body": "que eu te mando os 3, no direct.", "cta": True},
         ],
     },
@@ -626,7 +736,7 @@ LOTE_4 = [
             {"title": "3. O DESABAFO", "body": "Você fala o que sentiu do cliente chato → a resposta educada que dá pra mandar."},
             {"title": "4. O ORÇAMENTO FALADO", "body": "Você diz em voz alta → texto formatado pra colar no WhatsApp."},
             {"title": "5 E 6. REUNIÃO E IDEIA", "body": "Reunião gravada → decisões + responsáveis. Ideia no chuveiro → rascunho antes de esquecer."},
-            {"body": "Todas funcionam ditando. A parte difícil nunca foi digitar — era sentar pra fazer."},
+            {"body": "Todas funcionam ditando. A parte difícil nunca foi digitar — era sentar pra fazer.", "hl": "sentar pra fazer"},
         ],
     },
     {
@@ -641,9 +751,9 @@ LOTE_4 = [
             "#chatgpt #IAparaNegócios #alucinação #prompt"
         ),
         "slides": [
-            {"title": "A IA INVENTA COM CONFIANÇA?", "body": "Uma linha resolve 80% disso."},
+            {"title": "A IA INVENTA COM CONFIANÇA?", "body": "Uma linha resolve 80% disso.", "hl": "80% disso"},
             {"title": "ELA MENTE PORQUE NINGUÉM DEU PERMISSÃO PRA ELA DIZER “NÃO SEI”."},
-            {"body": "“Se você não tem certeza de algo, diga ‘não sei’ e me pergunte. Não preencha com suposição. Prefiro incompleto e correto a completo e inventado.”", "cta": True},
+            {"body": "Se você não tem certeza de algo, diga 'não sei' e me pergunte. Não preencha com suposição. Prefiro incompleto e correto a completo e inventado.", "prompt": True, "cap": "A linha antialucinação."},
             {"body": "Isso não deixa ela 100% confiável. Mas troca “número errado dito com firmeza” por “não sei, me confirma isso” — que é o que um funcionário bom faz."},
         ],
     },
@@ -661,9 +771,9 @@ LOTE_4 = [
         "slides": [
             {"title": "“MELHORA ESSE TEXTO” É O PIOR PEDIDO QUE EXISTE.", "body": "Olha o que acontece."},
             {"title": "“MELHORAR” PRA IA = ENCHER DE ADJETIVO.", "body": "Seu texto sai mais longo e mais falso."},
-            {"title": "EM VEZ DE “MELHORA”:", "body": "“Reescreva em no máximo 40 palavras, sem adjetivo, direto ao ponto.”", "cta": True},
-            {"title": "OU:", "body": "“Reescreva pra soar como uma pessoa falando, não como e-mail corporativo.”", "cta": True},
-            {"body": "“Melhorar” não é instrução — é torcida. A IA precisa saber melhor EM QUAL DIREÇÃO."},
+            {"body": "Reescreva em no máximo 40 palavras, sem adjetivo, direto ao ponto.", "prompt": True, "cap": "Em vez de “melhora” —"},
+            {"body": "Reescreva pra soar como uma pessoa falando, não como e-mail corporativo.", "prompt": True, "cap": "Ou —"},
+            {"body": "“Melhorar” não é instrução — é torcida. A IA precisa saber melhor EM QUAL DIREÇÃO.", "hl": "torcida"},
         ],
     },
     {
@@ -683,7 +793,7 @@ LOTE_4 = [
             {"body": "O que voltou: um pedido de desculpas genérico que ASSUMIU a culpa por um problema que talvez não seja seu."},
             {"body": "Faltou: o que de fato aconteceu. Se você errou ou não. O que você pode oferecer. E o limite — o que você NÃO vai prometer."},
             {"body": "A IA quer resolver o conflito rápido. Ela cede o que for preciso, porque não é o dinheiro dela."},
-            {"body": "Cliente irritado é o pior caso pra deixar a IA no automático. Ela precisa da sua régua, escrita."},
+            {"body": "Cliente irritado é o pior caso pra deixar a IA no automático. Ela precisa da sua régua, escrita.", "hl": "régua, escrita"},
         ],
     },
     {
@@ -701,7 +811,7 @@ LOTE_4 = [
             {"title": "É A LISTA QUE SEPARA “FERRAMENTA” DE “RISCO”."},
             {"body": "Não inventa resposta — quando não sabe, passa pra mim. Não fala preço final. Não promete prazo. Não dá conselho de dinheiro."},
             {"body": "Não assina meu nome em nada sem eu ver. Respeita o “não” do cliente e a LGPD. Não usa dado com nome de gente."},
-            {"body": "Essa segunda lista é a parte que quase ninguém escreve — e é ela que evita o vexame na frente do cliente."},
+            {"body": "Essa segunda lista é a parte que quase ninguém escreve — e é ela que evita o vexame na frente do cliente.", "hl": "o vexame"},
             {"title": "Comenta AGENTE", "body": "te mando 3 prontos, com as duas listas, de graça.", "cta": True},
         ],
     },
@@ -725,7 +835,7 @@ LOTE_4 = [
             {"title": "3. OS FOLLOW-UPS", "body": "Lista os orçamentos em aberto → a mensagem de cada um, pronta pra enviar segunda."},
             {"title": "4. O CONTEÚDO", "body": "Diz os 3 temas da semana → os 3 rascunhos, no seu tom."},
             {"title": "5. A CONVERSA DIFÍCIL", "body": "Descreve o cliente mais difícil → 3 perguntas pra te preparar antes."},
-            {"body": "Segunda de manhã você executa em vez de decidir. A decisão já foi tomada domingo, em 20 min."},
+            {"body": "Segunda de manhã você executa em vez de decidir. A decisão já foi tomada domingo, em 20 min.", "hl": "em 20 min"},
         ],
     },
     {
@@ -741,7 +851,7 @@ LOTE_4 = [
         "slides": [
             {"title": "POV: SÃO 19H, VOCÊ FECHOU A LOJA", "body": "e ainda tem 12 mensagens de “bom dia, tudo bem?” sem responder."},
             {"title": "NENHUMA DIZ O QUE A PESSOA QUER.", "body": "Mas responder todas é o seu trabalho agora."},
-            {"body": "Não é que você é devagar. É que “atender” virou 40 conversas paralelas que começam do zero toda vez."},
+            {"body": "Não é que você é devagar. É que “atender” virou 40 conversas paralelas que começam do zero toda vez.", "hl": "do zero"},
         ],
     },
 ]
